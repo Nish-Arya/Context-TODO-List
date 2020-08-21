@@ -14,7 +14,6 @@ class AppWithContext extends React.Component {
   }
 
   createTask = (task) => {
-    debugger;
     let date = new Date();
     let nextTaskId = date.getTime();
     const newTask = {
@@ -32,16 +31,18 @@ class AppWithContext extends React.Component {
     this.setState((state, props) => {
       const tasksWithDeletion = { ...state.tasks };
       delete tasksWithDeletion[id];
+      
       return {
         tasks: tasksWithDeletion,
       }
-    })
+    }, () => this.updateLocalStorageTasks());
   }
 
   updateLocalStorageTasks = () => {
-    console.log(this.state.tasks);
+    
     const jsonTasks = JSON.stringify(this.state.tasks);
     localStorage.setItem('tasks', jsonTasks);
+    console.log(this.state.tasks);
   }
 
   render () {

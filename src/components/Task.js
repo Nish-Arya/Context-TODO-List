@@ -1,13 +1,13 @@
 import React from 'react';
 
-const Task = () => {
+const Task = (props) => {
   const handleClick = () => {
-
+    props.deleteTask(props.task.id);
   }
 
   return (
     <li>
-      <h1>Hi, I'm a task in your to-do list!</h1>
+      <h1>{props.task.message}</h1>
       <button onClick={handleClick}>Delete Task</button>
     </li>
   );
